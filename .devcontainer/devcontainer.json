@@ -1,10 +1,21 @@
 {
-  "name": "2026-PS - Java 21",
+  "name": "BiblioTech - Java",
   "image": "mcr.microsoft.com/devcontainers/java:21",
+  "features": {
+    "ghcr.io/devcontainers/features/desktop-lite:1": {}
+  },
+  "forwardPorts": [6080],
+  "portsAttributes": {
+    "6080": {
+      "label": "Desktop BiblioTech",
+      "onAutoForward": "notify"
+    }
+  },
   "customizations": {
     "vscode": {
-      "extensions": ["vscjava.vscode-java-pack"],
-      "settings": { "editor.tabSize": 4, "files.eol": "\n" }
+      "extensions": [
+        "vscjava.vscode-java-pack"
+      ]
     }
   }
 }
