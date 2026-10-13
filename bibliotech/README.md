@@ -40,3 +40,31 @@ O cliente é a biblioteca do campus. O sistema resolve o problema de organizar l
 
 - Livro ganhou o atributo disponivel: Boolean, porque estaDisponivel()prescisa guardar o estado.
 - Leitor ganhou livrosEmMaos: int, porque podePegarEmprestado() compara com o limite.
+
+## 6. Como Executar
+
+```
+javac *.java
+java TesteRequisitos
+java TelaBiblioteca
+```
+
+`TesteRequisitos` confere os requisitos no terminal. `TelaBiblioteca` abre a janela na area de trabalho do Codespace (porta 6080).
+
+## 7. Requisitos e verificacoes
+
+| # | Onde esta no codigo | Como verifico |
+
+| RF01 | `Biblioteca.cadastrarLivro()` | TesteRequisitos: 1 verificacao 
+| RF02 | `Biblioteca.cadastrarLeitor()` | TesteRequisitos: 1 verificacao RF02 |
+| RF03 | `Biblioteca.buscarLivro()` e `Livro.estaDisponivel()`; area do acervo na janela | TesteRequisitos: 2 verificacoes RF03 |
+| RF04 | `Biblioteca.devolver()`, que chama `Emprestimo.registrarDevolucao()`; botao Devolver | TesteRequisitos: 3 verificacoes RF04 |
+| RF05 | `Biblioteca.emprestar()`, que chama `Emprestimo.realizarEmprestimo()`; botao Emprestar | TesteRequisitos: 5 verificacoes RF05 |
+| RF06 | `ainda nao implementado` | `sem verificacao` |
+
+## 8. O que o BiblioTech ainda nao faz
+
+- HU05: ver os emprestimos atrasados. O emprestimo ainda nao tem prazo.
+- RNF02: qualquer pessoa que abre a janela pode emprestar e devolver; nao ha login de bibliotecario.
+- Cadastrar livro e leitor pela janela: hoje o cadastro esta no `main` de `TelaBiblioteca`.
+- Guardar os dados: ao fechar o programa, os emprestimos se perdem.

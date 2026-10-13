@@ -63,10 +63,10 @@ public class Biblioteca {
         return true;
     }
 
-    public boolean devolver(String titulo) {
+    public boolean devolver(String titulo, String matricula) {
         for (int i = 0; i < emprestimos.size(); i++) {
             Emprestimo e = emprestimos.get(i);
-            if (e.estaAtivo() && e.getLivro().getTitulo().equals(titulo)) {
+            if (e.estaAtivo() && e.getLivro().getTitulo().equals(titulo) && e.getLeitor().getMatricula().equals(matricula)){
                 return e.registrarDevolucao();
             }
         }
@@ -79,7 +79,7 @@ public class Biblioteca {
         }
     }
 
-       // Fornece uma descricao do acervo para a interface.
+       
         public String obterAcervoComoTexto() {
             if (livros.isEmpty()) {
              return "Nenhum livro cadastrado.";

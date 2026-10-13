@@ -48,7 +48,6 @@ public class TelaBiblioteca extends JFrame {
         botaoDevolver.addActionListener(e -> devolver());
         botaoAtualizar.addActionListener(e -> atualizarAcervo());
 
-
         botoes.add(botaoEmprestar);
         botoes.add(botaoDevolver);
         botoes.add(botaoAtualizar);
@@ -91,6 +90,7 @@ public class TelaBiblioteca extends JFrame {
 
     private void devolver() {
         String titulo = campoTitulo.getText().trim();
+        String matricula = campoMatricula.getText().trim();
 
         if (titulo.isEmpty()) {
             JOptionPane.showMessageDialog(
@@ -99,7 +99,7 @@ public class TelaBiblioteca extends JFrame {
             return;
         }
 
-        boolean resultado = biblioteca.devolver(titulo);
+        boolean resultado = biblioteca.devolver(titulo, matricula);
         atualizarAcervo();
 
         if (resultado) {
@@ -112,19 +112,22 @@ public class TelaBiblioteca extends JFrame {
             );
         }
     }
-
+    
     public static void main(String[] args) {
         Biblioteca biblioteca = new Biblioteca();
 
         biblioteca.cadastrarLivro(
             new Livro("Dom Casmurro", "Machado de Assis", 1899)
         );
+
         biblioteca.cadastrarLivro(
             new Livro("Capitaes da Areia", "Jorge Amado", 1937)
         );
+
         biblioteca.cadastrarLeitor(
             new Leitor("Pedro Alves", "2026010", 1)
         );
+
         biblioteca.cadastrarLeitor(
             new Leitor("Ana Lima", "2026011", 2)
         );
