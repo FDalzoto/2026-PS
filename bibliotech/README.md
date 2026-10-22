@@ -40,3 +40,15 @@ O cliente é a biblioteca do campus. O sistema resolve o problema de organizar l
 
 - Livro ganhou o atributo disponivel: Boolean, porque estaDisponivel()prescisa guardar o estado.
 - Leitor ganhou livrosEmMaos: int, porque podePegarEmprestado() compara com o limite.
+
+## 6. Persistência de Dados
+
+- O banco de dados utilizado foi o mariaDB que é uma banco de dados relacional que armazena as informações de cada livro.
+
+- A classe Conexao é responsável por conectar o sistema ao banco de dados, utilizando as variáveis de ambiente DB_USER e DB_PASSWORD para obter o usuário e a senha de acesso.
+
+- A classe LivroDAO cuida das operações com os livros no banco de dados, como cadastrar, consultar, atualizar e excluir registros.
+
+- Os testes são realizados executando a classe de teste de conexão e, depois, os testes de persistência, verificando se os dados são salvos e manipulados corretamente.
+
+- Antes de executar os testes, é necessário configurar as variáveis de ambiente e garantir que o banco de dados esteja funcionando.
