@@ -6,7 +6,7 @@ public class TesteListarLivros {
 
         LivroDAO dao = new LivroDAO();
 
-        List<String> livros = dao.listarLivros();
+        List<Livro> livros = dao.listarLivros();
 
         System.out.println(
             "=== LIVROS CADASTRADOS ==="
@@ -20,8 +20,14 @@ public class TesteListarLivros {
 
         } else {
 
-            for (String livro : livros) {
-                System.out.println(livro);
+            for (Livro livro : livros) {
+
+                System.out.println(
+                    livro.getId() + " - " +
+                    livro.getTitulo() + " - " +
+                    livro.getAutor() + " (" +
+                    livro.getAno() + ")"
+                );
             }
         }
     }

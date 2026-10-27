@@ -1,3 +1,4 @@
+
 /*
  * Disciplina: 2026-PS
  * Projeto   : bibliotech
@@ -7,12 +8,13 @@
  */
 public class Livro {
 
+    private int id;
     private String titulo;
     private String autor;
     private int ano;
-    private boolean disponivel; 
+    private boolean disponivel;
 
-    //ATRIBUTOS:
+    // ATRIBUTOS:
     public Livro(String titulo, String autor, int ano) {
         this.titulo = titulo;
         this.autor = autor;
@@ -20,7 +22,17 @@ public class Livro {
         this.disponivel = true;
     }
 
+    public Livro(int id, String titulo, String autor, int ano) {
+        this(titulo, autor, ano);
+        this.id = id;
+    }
+
     // GETTERS:
+
+    public int getId() {
+        return id;
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -33,12 +45,16 @@ public class Livro {
         return ano;
     }
 
-
     public boolean estaDisponivel() {
         return disponivel;
     }
 
     // OPERÇÕES:
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void emprestar() {
         this.disponivel = false;
     }
@@ -47,10 +63,8 @@ public class Livro {
         this.disponivel = true;
     }
 
-
     public String toString() {
         String situacao = disponivel ? "disponivel" : "emprestado";
         return titulo + " (" + autor + ", " + ano + ") - " + situacao;
     }
 }
-
