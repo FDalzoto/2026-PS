@@ -87,6 +87,14 @@ public class TelaLivros extends JFrame {
 
         botaoBuscarTitulo.addActionListener(
                 e -> buscarPorTitulo());
+
+        campoId.addActionListener(e -> {
+            buscarLivro();
+        });
+
+        campoTitulo.addActionListener(e -> {
+            buscarPorTitulo();
+        });
     }
 
     private void carregarLivros() {
@@ -157,6 +165,8 @@ public class TelaLivros extends JFrame {
             status.setText(
                     "Livro encontrado: " + livro.getTitulo());
         }
+
+        campoId.setText("");
     }
 
     private void buscarPorTitulo() {
@@ -192,6 +202,8 @@ public class TelaLivros extends JFrame {
                     this,
                     "Nenhum livro encontrado.");
         }
+        
+        campoTitulo.setText("");
     }
 
     public static void main(String[] args) {
@@ -199,5 +211,6 @@ public class TelaLivros extends JFrame {
         SwingUtilities.invokeLater(() -> {
             new TelaLivros().setVisible(true);
         });
+
     }
 }
