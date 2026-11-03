@@ -1,4 +1,3 @@
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +16,7 @@ public class LivroDAO {
                 + "VALUES (?, ?, ?)";
 
         try (Connection conexao = Conexao.conectar();
-             PreparedStatement comando = conexao.prepareStatement(sql)) {
+                PreparedStatement comando = conexao.prepareStatement(sql)) {
 
             comando.setString(1, titulo);
             comando.setString(2, autor);
@@ -43,7 +42,7 @@ public class LivroDAO {
                 + "WHERE id = ?";
 
         try (Connection conexao = Conexao.conectar();
-             PreparedStatement comando = conexao.prepareStatement(sql)) {
+                PreparedStatement comando = conexao.prepareStatement(sql)) {
 
             comando.setString(1, titulo);
             comando.setString(2, autor);
@@ -64,7 +63,7 @@ public class LivroDAO {
         String sql = "DELETE FROM livros WHERE id = ?";
 
         try (Connection conexao = Conexao.conectar();
-             PreparedStatement comando = conexao.prepareStatement(sql)) {
+                PreparedStatement comando = conexao.prepareStatement(sql)) {
 
             comando.setInt(1, id);
 
@@ -85,8 +84,8 @@ public class LivroDAO {
                 + "FROM livros ORDER BY titulo";
 
         try (Connection conexao = Conexao.conectar();
-             PreparedStatement comando = conexao.prepareStatement(sql);
-             ResultSet resultado = comando.executeQuery()) {
+                PreparedStatement comando = conexao.prepareStatement(sql);
+                ResultSet resultado = comando.executeQuery()) {
 
             while (resultado.next()) {
 
@@ -94,8 +93,7 @@ public class LivroDAO {
                         resultado.getInt("id"),
                         resultado.getString("titulo"),
                         resultado.getString("autor"),
-                        resultado.getInt("ano")
-                );
+                        resultado.getInt("ano"));
 
                 livros.add(livro);
             }
@@ -114,7 +112,7 @@ public class LivroDAO {
                 + "FROM livros WHERE id = ?";
 
         try (Connection conexao = Conexao.conectar();
-             PreparedStatement comando = conexao.prepareStatement(sql)) {
+                PreparedStatement comando = conexao.prepareStatement(sql)) {
 
             comando.setInt(1, id);
 
@@ -126,8 +124,7 @@ public class LivroDAO {
                             resultado.getInt("id"),
                             resultado.getString("titulo"),
                             resultado.getString("autor"),
-                            resultado.getInt("ano")
-                    );
+                            resultado.getInt("ano"));
                 }
             }
 
@@ -138,4 +135,48 @@ public class LivroDAO {
 
         return null;
     }
+
+    public List<Livro> buscarLivrosPorTitulo(
+            String titulo) {
+
+        List<Livro> livros = new ArrayList<>();
+
+        String sql = "SELECT id, titulo, autor, ano " +
+                "FROM livros " +
+                "WHERE titulo LIKE ? " +
+                "ORDER BY titulo";
+
+        try (
+                Connection conexao = Conexao.conectar();
+
+                PreparedStatement comando = conexao.prepareStatement(sql)) {
+
+            comando.setString(
+                    1, "%" + titulo + "%");
+
+            try (
+                    ResultSet resultado = comando.executeQuery()) {
+
+                while (resultado.next()) {
+
+                    Livro livro = new Livro(
+                            resultado.getInt("id"),
+                            resultado.getString("titulo"),
+                            resultado.getString("autor"),
+                            resultado.getInt("ano"));
+
+                    livros.add(livro);
+                }
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println(
+                    "Erro ao buscar livros: " +
+                            e.getMessage());
+        }
+
+        return livros;
+    }
+
 }
