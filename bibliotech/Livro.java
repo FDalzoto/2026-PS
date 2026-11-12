@@ -12,6 +12,7 @@ public class Livro {
     private String titulo;
     private String autor;
     private int ano;
+    private String capa;
     private boolean disponivel;
 
     // ATRIBUTOS:
@@ -45,6 +46,10 @@ public class Livro {
         return ano;
     }
 
+    public String getCapa() {
+        return capa;
+    }
+
     public boolean estaDisponivel() {
         return disponivel;
     }
@@ -66,5 +71,9 @@ public class Livro {
     public String toString() {
         String situacao = disponivel ? "disponivel" : "emprestado";
         return titulo + " (" + autor + ", " + ano + ") - " + situacao;
+    }
+
+    public void setCapa(String capa) {
+        this.capa = capa;
     }
 }
